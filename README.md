@@ -115,9 +115,9 @@ PDF:
 - pdf_to_image (converts a PDF document into an image)
 - pdf_to_text (converts a PDF document into plaintext)
 
-Available PHP classes & methods
+Available PHP functions
 -----------------
-Not all API methods are available as PHP classes.
+Not all API methods are available as PHP functions.
 
 Currently available are:
 - imageUpscaled7($image)
