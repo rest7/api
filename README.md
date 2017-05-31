@@ -8,7 +8,7 @@ How to use the webservices?
 ------------
 There's two possibilities:
 - check the wizards at rest7.com and generate simple code pieces you need
-- download classes from this repository
+- download the library from this repository
 
 Using a webservice
 -----------------
@@ -27,19 +27,52 @@ $image = file_get_contents($data->image);
 //save fetched image to disk
 file_put_contents('output.png', $image); 
 ```
-Or you can use a PHP class
+Or you can use a very simple PHP library
 -----------------
+Example 1: converting image from PNG to DDS
 ```php
-include 'Image7.php';
+include 'rest7.php';
 
-//create a new instance of Image7:
-$image = new Image7();
+//load an image from file:
+$im = imagecreatefrompng('test.png'); //using a resource, or:
+$im = 'http://server.com/dir/test.png'; //using an URL or:
+$im = 'dir/test.png'; //using a local file
 
-//load image from URL
-$image->load('http://server.com/image.jpg');
+//convert to DDS
+$dds = convertImage7($im, 'dds');
 
-//convert to PNG
-$image->save('output.png');
+if (!$dds)
+{
+	echo 'Conversion failed';
+}
+else
+{
+	//save to file
+	file_put_contents('output.dds', $dds);
+}
+```
+Example 2: checking if image was upscaled
+```php
+include 'rest7.php';
+
+//load an image from file:
+$im = imagecreatefrompng('test.png'); //using a resource, or:
+$im = 'http://server.com/dir/test.png'; //using an URL or:
+$im = 'dir/test.png'; //using a local file
+
+$res = imageUpscaled7($im);
+if ($res === false)
+{
+	echo 'Function failed';
+}
+else if ($res)
+{
+	echo 'Image was upscaled';
+}
+else
+{
+	echo 'Image was not upscaled';
+}
 ```
 
 Available API webservices
@@ -85,3 +118,7 @@ PDF:
 Available PHP classes & methods
 -----------------
 Not all API methods are available as PHP classes.
+
+Currently available are:
+- imageUpscaled7($image)
+- convertImage7($image, $outputFormat = 'png', $returnURL = false)
