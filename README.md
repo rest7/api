@@ -27,7 +27,7 @@ $image = file_get_contents($data->image);
 //save fetched image to disk
 file_put_contents('output.png', $image); 
 ```
-Or you can use a very simple PHP library
+Or you can use a very simple PHP library rest7.php
 -----------------
 Example 1: converting image from PNG to DDS
 ```php
@@ -75,6 +75,16 @@ else
 }
 ```
 
+And if you just want to load images in different format you can use imagecreatefromfile7.php
+-----------------
+Example 1: converting image from PNG to DDS
+```php
+include 'imagecreatefromfile7.php';
+
+$im = imagecreatefrompsd('image.psd');
+imagepng($im, 'output.png');
+```
+
 Available API webservices
 -----------------
 Image:
@@ -115,10 +125,38 @@ PDF:
 - pdf_to_image (converts a PDF document into an image)
 - pdf_to_text (converts a PDF document into plaintext)
 
-Available PHP functions
+Available PHP functions in rest7.php
 -----------------
-Not all API methods are available as PHP functions.
+Not all API methods are available as PHP functions in rest7.php
 
 Currently available are:
 - imageUpscaled7($image)
 - convertImage7($image, $outputFormat = 'png', $returnURL = false)
+
+Available PHP functions in imagecreatefromfile7.php
+-----------------
+Not all API methods are available as PHP functions in imagecreatefromfile7.php
+
+Currently available are:
+- function imagecreatefromcin($fileName)
+- function imagecreatefromsct($fileName)
+- function imagecreatefrompix($fileName)
+- function imagecreatefrommtv($fileName)
+- function imagecreatefromjbg($fileName)
+- function imagecreatefromdpx($fileName)
+- function imagecreatefromdcx($fileName)
+- function imagecreatefromrla($fileName)
+- function imagecreatefromfts($fileName)
+- function imagecreatefromtga($fileName)
+- function imagecreatefrompbm($fileName)
+- function imagecreatefrompnm($fileName)
+- function imagecreatefromppm($fileName)
+- function imagecreatefrompgm($fileName)
+- function imagecreatefrompcx($fileName)
+- function imagecreatefrombmp($fileName)
+- function imagecreatefromico($fileName)
+- function imagecreatefrompsd($fileName)
+- function imagecreatefromdds($fileName)
+
+
+
